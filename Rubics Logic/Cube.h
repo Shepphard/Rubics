@@ -10,8 +10,11 @@
 #define __Rubics_Logic__Cube__
 
 #include <stdio.h>
+#include <iostream>
 #include "Face.h"
 #endif /* defined(__Rubics_Logic__Cube__) */
+
+using namespace std;
 
 class Cube
 {
@@ -35,5 +38,7 @@ public:
     const void moveUp();
     const void moveDown();
     const void moveBehind();
+    
+    void show();
     
 };

@@ -24,7 +24,6 @@ private:
 public:
     //Konstruktoren und Destruktoren
     Face(int color = -1);
-    Face(const Face& f); //Kopierkonstruktor
     ~Face();
     
     
