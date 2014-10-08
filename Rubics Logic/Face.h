@@ -18,21 +18,26 @@
 class Face
 {
 private:
-    Tile*** f_tiles;
+    Tile* f_tiles;
     
     
 public:
-    Face();
-    Face(int color);
-    Face(Face const &f);
+    //Konstruktoren und Destruktoren
+    Face(int color = -1);
+    Face(const Face& f); //Kopierkonstruktor
     ~Face();
     
-    void rotateRight(Face* const f_input, Face* f_output);
-    void rotateLeft(Face* const f_input, Face* f_output);
     
-    int getTileColor(int row, int col) const;
-    void setTileColor(int row, int col, int color);
+    //Face Rotation
+    //TO DO Reduce to one Argument! Work up Copy Constructor
+    Face* rotateRight();
+    Face* rotateLeft();
     
+    //Get Tile and Set Tile Color at specific row and col
+    int getTileColor(int index) const;
+    void setTileColor(int index, int color);
+    
+    //Only for testing Purpose atm
     void shuffle();
     void printFace();
 

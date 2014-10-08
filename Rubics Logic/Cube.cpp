@@ -32,19 +32,6 @@ Cube::~Cube()
 
 void Cube::shuffle()
 {
-    currentFace->setTileColor(0, 0, 0);
-    currentFace->setTileColor(0, 1, 1);
-    currentFace->setTileColor(0, 2, 2);
-    
-    currentFace->setTileColor(1, 0, 3);
-    currentFace->setTileColor(1, 1, 4);
-    currentFace->setTileColor(1, 2, 5);
-    
-    currentFace->setTileColor(2, 0, 6);
-    currentFace->setTileColor(2, 1, 7);
-    currentFace->setTileColor(2, 2, 8);
-    
-    currentFace->printFace();
     
     //currentFace->rotateRight();
     
