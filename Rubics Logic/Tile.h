@@ -25,7 +25,7 @@ public:
     Tile();
     Tile(int color);
 
-    //Colors
+    //Set or Get Color
     void setColor(int const color);
     int getColor() const;
 };

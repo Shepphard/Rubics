@@ -24,8 +24,6 @@ private:
     Face* rightFace;
     Face* behindFace;
     
-    
-    
 public:
     Cube();
     ~Cube();

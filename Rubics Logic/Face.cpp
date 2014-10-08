@@ -15,122 +15,104 @@ using namespace std;
 
 
 
-/*
- Create a uniform Face with same color.
- */
+// Create a uniform Face with same color.
+
 Face::Face(int color)
 {
-    f_tiles = new Tile**[3];
+    f_tiles = new Tile[9];
     
-    for(int i = 0; i < 3; i++)
+    for(int i = 0; i < 9; i++)
     {
-        f_tiles[i] = new Tile*[3];
-    }
-    
-    for(int i = 0; i < 3; i++)
-    {
-        for(int j = 0; j < 3; j++)
-        {
-            f_tiles[i][j] = new Tile(color);
-        }
+        f_tiles[i].setColor(color);
     }
 }
 
-Face::Face(Face const &f)
+// Make an exact copy of a Face
+Face::Face(const Face& f)
 {
-    for(int i = 0; i < 3; i++)
-    {
-        for(int j = 0; j < 3; j++)
-        {
-            f.f_tiles[i][j]->setColor(f_tiles[i][j]->getColor());
-        }
-    }
-}
-
-/*
- Create uniform Face with Default Color
- */
-Face::Face()
-{
-    Face(-1);
+    f_tiles = f.f_tiles;
 }
 
 // Destructor
 Face::~Face()
 {
-    for(int i = 0; i < 3; i++)
-    {
-        for(int j = 0; j < 3; j++)
-        {
-            delete [] f_tiles[i][j];
-        }
-    }
-    for(int i = 0; i < 3; i++)
-    {
-        delete [] f_tiles[i];
-    }
     delete [] f_tiles;
 }
 
-
-void Face::rotateRight(Face* const f_input, Face* f_output)
+// Rotate whole face by -90°
+Face* Face::rotateRight()
 {
-    Face* temp = f_input;
+    Face* temp = new Face();
     
-    for(int i = 0; i < 3; i++)
-    {
-        for(int j = 0; j < 3; j++)
-        {
-            f_output->setTileColor(i, j, f_input->getTileColor(2-j, i));
-        }
-    }
+    temp->setTileColor(0, this->getTileColor(6));
+    temp->setTileColor(1, this->getTileColor(3));
+    temp->setTileColor(2, this->getTileColor(0));
+    
+    temp->setTileColor(3, this->getTileColor(7));
+    temp->setTileColor(4, this->getTileColor(4));
+    temp->setTileColor(5, this->getTileColor(1));
+    
+    temp->setTileColor(6, this->getTileColor(8));
+    temp->setTileColor(7, this->getTileColor(5));
+    temp->setTileColor(8, this->getTileColor(2));
+    
+    return temp;
+    
 }
 
-//Rotate the faces
-void Face::rotateLeft(Face* const f_input, Face* f_output)
+//Rotate face by 90°
+Face* Face::rotateLeft()
 {
-    for(int i = 0; i < 3; i++)
-    {
-        for(int j = 0; j < 3; j++)
-        {
-            f_output->setTileColor(i, j, f_input->getTileColor(j, 2-i));
-        }
-    }
+    Face* temp = new Face();
+    
+    temp->setTileColor(0, this->getTileColor(2));
+    temp->setTileColor(1, this->getTileColor(5));
+    temp->setTileColor(2, this->getTileColor(8));
+    
+    temp->setTileColor(3, this->getTileColor(1));
+    temp->setTileColor(4, this->getTileColor(4));
+    temp->setTileColor(5, this->getTileColor(7));
+    
+    temp->setTileColor(6, this->getTileColor(0));
+    temp->setTileColor(7, this->getTileColor(3));
+    temp->setTileColor(8, this->getTileColor(6));
+    
+    return temp;
 }
 
-int Face::getTileColor(int row, int col) const
+int Face::getTileColor(int index) const
 {
-    return f_tiles[row][col]->getColor();
+    return f_tiles[index].getColor();
 }
 
-void Face::setTileColor(int row, int col, int color)
+void Face::setTileColor(int index, int color)
 {
-    f_tiles[row][col]->setColor(color);
+    f_tiles[index].setColor(color);
 }
 
+
+
+
+////////////////////////////////////////////
 void Face::shuffle()
 {
     int counter = 0;
-    for(int i = 0; i < 3; i++)
+    for(int i = 0; i < 9; i++)
     {
-        for(int j = 0; j < 3; j++)
-        {
-            f_tiles[i][j]->setColor(counter++);
-        }
+        f_tiles[i].setColor(counter++);
     }
 }
 
 void Face::printFace()
 {
     
-    for(int i = 0; i < 3; i++)
+    for(int i = 0; i < 9; i++)
     {
-        for(int j = 0; j < 3; j++)
-        {
-            cout << f_tiles[i][j]->getColor() << " ";
-            if(j == 2)
-                cout << endl;
-        }
+        if(i%3 == 0)
+            cout << endl;
+        cout << f_tiles[i].getColor() << " ";
+        
     }
+    
     cout << endl;
 }
