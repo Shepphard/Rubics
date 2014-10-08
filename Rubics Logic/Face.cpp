@@ -36,6 +36,17 @@ Face::Face(int color)
     }
 }
 
+Face::Face(Face const &f)
+{
+    for(int i = 0; i < 3; i++)
+    {
+        for(int j = 0; j < 3; j++)
+        {
+            f.f_tiles[i][j]->setColor(f_tiles[i][j]->getColor());
+        }
+    }
+}
+
 /*
  Create uniform Face with Default Color
  */
@@ -61,71 +72,65 @@ Face::~Face()
     delete [] f_tiles;
 }
 
+
+void Face::rotateRight(Face* const f_input, Face* f_output)
+{
+    Face* temp = f_input;
+    
+    for(int i = 0; i < 3; i++)
+    {
+        for(int j = 0; j < 3; j++)
+        {
+            f_output->setTileColor(i, j, f_input->getTileColor(2-j, i));
+        }
+    }
+}
+
 //Rotate the faces
-void Face::rotateLeft()
+void Face::rotateLeft(Face* const f_input, Face* f_output)
 {
-    Tile*** temp = f_tiles;
-    
     for(int i = 0; i < 3; i++)
     {
         for(int j = 0; j < 3; j++)
         {
-            f_tiles[i][j] = temp[2-j][i];
+            f_output->setTileColor(i, j, f_input->getTileColor(j, 2-i));
         }
     }
 }
 
-
-void Face::rotateRight()
+int Face::getTileColor(int row, int col) const
 {
-    Tile*** temp = f_tiles;
-    
+    return f_tiles[row][col]->getColor();
+}
+
+void Face::setTileColor(int row, int col, int color)
+{
+    f_tiles[row][col]->setColor(color);
+}
+
+void Face::shuffle()
+{
+    int counter = 0;
     for(int i = 0; i < 3; i++)
     {
         for(int j = 0; j < 3; j++)
         {
-            temp[i][j] = f_tiles[j][2-i];
+            f_tiles[i][j]->setColor(counter++);
         }
     }
-}
-
-void Face::setTileColor(int r, int c, int color)
-{
-    f_tiles[r][c]->setColor(color);
 }
 
 void Face::printFace()
 {
-    string s = "";
+    
     for(int i = 0; i < 3; i++)
     {
         for(int j = 0; j < 3; j++)
         {
             cout << f_tiles[i][j]->getColor() << " ";
             if(j == 2)
-            {
                 cout << endl;
-            }
         }
     }
-    
-    cout << s << endl;
-}
-
-void Face::printEmpty()
-{
-    string s = "";
-    for(int i = 0; i < 3; i++)
-    {
-        for(int j = 0; j < 3; j++)
-        {
-            cout  << "- ";
-            if(j == 2)
-            {
-                cout << endl;
-            }
-        }
-    }
-    
-    cout << s << endl;
+    cout << endl;
 }

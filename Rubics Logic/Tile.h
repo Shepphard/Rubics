@@ -18,17 +18,14 @@
 class Tile
 {
 private:
-    int t_color; //The Color of the Tile
+    signed int t_color; //The Color of the Tile
     
 public:
-    //Standard Constructors
+    //Constructors
     Tile();
-    
-    //Constructor
-    Tile(int c);
+    Tile(int color);
 
-    //Set the Color of the Tile
-    void setColor(char c){t_color = c;}
-    
-    int getColor();
+    //Colors
+    void setColor(int const color);
+    int getColor() const;
 };

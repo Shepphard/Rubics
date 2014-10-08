@@ -46,7 +46,7 @@ void Cube::shuffle()
     
     currentFace->printFace();
     
-    currentFace->rotateRight();
+    //currentFace->rotateRight();
     
     currentFace->printFace();
 }
@@ -59,13 +59,13 @@ const void Cube::moveRight()
     currentFace = leftFace;
     
     leftFace = behindFace;
-    leftFace->rotateLeft();
-    leftFace->rotateLeft();
+   // leftFace->rotateLeft();
+    //leftFace->rotateLeft();
     
-    aboveFace->rotateLeft();
-    belowFace->rotateRight();
+    //aboveFace->rotateLeft();
+    //belowFace->rotateRight();
     
-    temp->rotateRight();
-    temp->rotateRight();
+    //temp->rotateRight();
+    //temp->rotateRight();
     behindFace=temp;
 }

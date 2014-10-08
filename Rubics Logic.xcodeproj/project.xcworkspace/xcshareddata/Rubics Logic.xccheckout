@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>065898BB-C735-4D6A-AD4C-E3175FD65931</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Rubics Logic</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>3927AFD4A2D466823C556187B5B6AE39C7BCEC6B</key>
+		<string>https://github.com/Shepphard/Rubics.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Rubics Logic.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>3927AFD4A2D466823C556187B5B6AE39C7BCEC6B</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Shepphard/Rubics.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>3927AFD4A2D466823C556187B5B6AE39C7BCEC6B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>3927AFD4A2D466823C556187B5B6AE39C7BCEC6B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Rubics</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -8,9 +8,9 @@
 
 #include "Tile.h"
 
-Tile::Tile(int c)
+Tile::Tile(int color)
 {
-    t_color = c;
+    t_color = color;
 }
 
 Tile::Tile()
@@ -18,7 +18,12 @@ Tile::Tile()
     t_color = -1; // Default Value -1
 }
 
-int Tile::getColor()
+void Tile::setColor(int const color)
+{
+    t_color = color;
+}
+
+int Tile::getColor() const
 {
     return t_color;
 }
