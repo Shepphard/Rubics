@@ -19,13 +19,15 @@ using namespace std;
 class Cube
 {
 private:
-    Face* currentFace;
+    Face* allFaces;
     
-    Face* aboveFace;
-    Face* belowFace;
-    Face* leftFace;
-    Face* rightFace;
-    Face* behindFace;
+    Face currentFace;
+    
+    Face aboveFace;
+    Face belowFace;
+    Face leftFace;
+    Face rightFace;
+    Face behindFace;
     
 public:
     Cube();
@@ -33,11 +35,27 @@ public:
     
     void shuffle();
     
+    //moving to set new active Face
     const void moveRight();
     const void moveLeft();
     const void moveUp();
     const void moveDown();
     const void moveBehind();
+    
+    //Move the tiles
+    void leftColUp();
+    void leftColDown();
+    void middleColUp();
+    void middleColDown();
+    void rightColUp();
+    void rightColDown();
+    
+    void upperRowLeft();
+    void upperRowRight();
+    void middleRowLeft();
+    void middleRowRight();
+    void lowerRowLeft();
+    void lowerRowRight();
     
     void show();
     
