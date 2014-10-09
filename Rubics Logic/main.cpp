@@ -11,22 +11,15 @@
 
 int main(int argc, const char * argv[]) {
     
-    Face* f = new Face();
+    Cube* cube = new Cube();
     
-    f->printFace();
+    cube->shuffle();
     
-    f->shuffle();
+    cube->show();
     
-    f->printFace();
+    cube->moveRight();
     
-    f = f->rotateRight();
-    
-    f->printFace();
-    
-    f = f->rotateLeft();
-    f = f->rotateLeft();
-    
-    f->printFace();
+    cube->show();
     
     return 0;
 }

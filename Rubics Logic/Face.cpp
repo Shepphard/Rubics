@@ -27,12 +27,6 @@ Face::Face(int color)
     }
 }
 
-// Make an exact copy of a Face
-Face::Face(const Face& f)
-{
-    f_tiles = f.f_tiles;
-}
-
 // Destructor
 Face::~Face()
 {
@@ -110,6 +104,7 @@ void Face::printFace()
     {
         if(i%3 == 0)
             cout << endl;
+        
         cout << f_tiles[i].getColor() << " ";
         
     }
