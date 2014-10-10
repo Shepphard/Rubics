@@ -27,6 +27,16 @@ Face::Face(int color)
     }
 }
 
+Face::Face(const Face& f)
+{
+    f_tiles = new Tile[9];
+    
+    for(int i = 0; i < 9; i++)
+    {
+        f_tiles[i].setColor(f.getTileColor(i));
+    }
+}
+
 // Destructor
 Face::~Face()
 {
@@ -36,7 +46,7 @@ Face::~Face()
 // Rotate whole face by -90°
 Face* Face::rotateRight()
 {
-    Face* temp = new Face();
+    Face* temp = new Face(-1);
     
     temp->setTileColor(0, this->getTileColor(6));
     temp->setTileColor(1, this->getTileColor(3));
@@ -57,7 +67,7 @@ Face* Face::rotateRight()
 //Rotate face by 90°
 Face* Face::rotateLeft()
 {
-    Face* temp = new Face();
+    Face* temp = new Face(-1);
     
     temp->setTileColor(0, this->getTileColor(2));
     temp->setTileColor(1, this->getTileColor(5));
@@ -88,26 +98,26 @@ void Face::setTileColor(int index, int color)
 
 
 ////////////////////////////////////////////
-void Face::shuffle()
-{
-    int counter = 0;
-    for(int i = 0; i < 9; i++)
-    {
-        f_tiles[i].setColor(counter++);
-    }
-}
-
-void Face::printFace()
-{
-    
-    for(int i = 0; i < 9; i++)
-    {
-        if(i%3 == 0)
-            cout << endl;
-        
-        cout << f_tiles[i].getColor() << " ";
-        
-    }
-    
-    cout << endl;
-}
+//void Face::shuffle()
+//{
+//    int counter = 0;
+//    for(int i = 0; i < 9; i++)
+//    {
+//        f_tiles[i].setColor(counter++);
+//    }
+//}
+//
+//void Face::printFace()
+//{
+//    
+//    for(int i = 0; i < 9; i++)
+//    {
+//        if(i%3 == 0)
+//            cout << endl;
+//        
+//        cout << f_tiles[i].getColor() << " ";
+//        
+//    }
+//    
+//    cout << endl;
+//}

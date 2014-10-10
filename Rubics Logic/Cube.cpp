@@ -12,6 +12,11 @@ Cube::Cube()
 {
     //0 - Current | 1 - left | 2 - Right | 3 - Above | 4 - Below | 5 - Behind
     allFaces = new Face[6];
+    
+    for(int i = 0; i < 6; i++)
+    {
+        allFaces[i] = *new Face(-1);
+    }
 }
 
 Cube::~Cube()
@@ -21,22 +26,74 @@ Cube::~Cube()
 
 const void Cube::moveRight()
 {
-    Face temp;
     
     //Perform necessary rotations
     allFaces[5] = *allFaces[5].rotateLeft();
     allFaces[5] = *allFaces[5].rotateLeft();
+    
     allFaces[3] = *allFaces[3].rotateRight();
+    
     allFaces[4] = *allFaces[4].rotateLeft();
+    
     allFaces[1] = *allFaces[1].rotateLeft();
     allFaces[1] = *allFaces[1].rotateLeft();
     
-    temp = allFaces[5];
+    Face* temp = new Face(allFaces[5]);
     
     allFaces[5] = allFaces[1];
     allFaces[1] = allFaces[0];
     allFaces[0] = allFaces[2];
-    allFaces[2] = temp;
+    allFaces[2] = *temp;
+}
+
+const void Cube::moveLeft()
+{
+    
+    //Perform necessary rotations
+    allFaces[5] = *allFaces[5].rotateLeft();
+    allFaces[5] = *allFaces[5].rotateLeft();
+    
+    allFaces[3] = *allFaces[3].rotateLeft();
+    
+    allFaces[4] = *allFaces[4].rotateRight();
+    
+    allFaces[2] = *allFaces[2].rotateLeft();
+    allFaces[2] = *allFaces[2].rotateLeft();
+    
+    Face* temp = new Face(allFaces[5]);
+    
+    allFaces[5] = allFaces[2];
+    allFaces[2] = allFaces[0];
+    allFaces[0] = allFaces[1];
+    allFaces[1] = *temp;
+}
+
+const void Cube::moveDown()
+{
+    
+    //Perform necessary rotations
+    allFaces[1] = *allFaces[1].rotateLeft();
+    allFaces[2] = *allFaces[2].rotateRight();
+    
+    Face* temp = new Face(allFaces[3]);
+    
+    allFaces[3] = allFaces[0];
+    allFaces[0] = allFaces[4];
+    allFaces[4] = allFaces[5];
+    allFaces[5] = *temp;
+}
+
+const void Cube::moveBehind()
+{
+    this->moveDown();
+    this->moveDown();
+}
+
+const void Cube::moveUp()
+{
+    this->moveDown();
+    this->moveDown();
+    this->moveDown();
 }
 
 void Cube::shuffle()
@@ -55,7 +112,7 @@ void Cube::shuffle()
             {
                 num = std::rand() % 6;
                 
-                cout << num << endl;
+                
                 
                 if(colorCount[num] >= 9)
                 {
@@ -63,6 +120,7 @@ void Cube::shuffle()
                 }
                 else
                 {
+                    cout << num << endl;
                     valid = true;
                 }
             }
@@ -74,46 +132,38 @@ void Cube::shuffle()
 
 void Cube::show()
 {
-    currentFace = allFaces[0];
-    leftFace = allFaces[1];
-    rightFace = allFaces[2];
-    aboveFace = allFaces[3];
-    belowFace = allFaces[4];
-    behindFace =
-    
-    allFaces[5];
-    
-    
+
     cout << "      ---------" << endl;
     
-    cout << "      | " << aboveFace.getTileColor(0) << " " << aboveFace.getTileColor(1) << " " << aboveFace.getTileColor(2) << " |" << endl;
-    cout << "      | " << aboveFace.getTileColor(3) << " " << aboveFace.getTileColor(4) << " " << aboveFace.getTileColor(5) << " |" << endl;
-    cout << "      | " << aboveFace.getTileColor(6) << " " << aboveFace.getTileColor(7) << " " << aboveFace.
-    getTileColor(8) << " |" << endl;
+    cout << "      | " << allFaces[3].getTileColor(0) << " " << allFaces[3].getTileColor(1) << " " << allFaces[3].getTileColor(2) << " |" << endl;
+    cout << "      | " << allFaces[3].getTileColor(3) << " " << allFaces[3].getTileColor(4) << " " << allFaces[3].getTileColor(5) << " |" << endl;
+    cout << "      | " << allFaces[3].getTileColor(6) << " " << allFaces[3].getTileColor(7) << " " << allFaces[3].getTileColor(8) << " |" << endl;
     
     cout << "---------------------" << endl;
     
-    cout << leftFace.getTileColor(0) << " " << leftFace.getTileColor(1) << " " << leftFace.getTileColor(2) << " | "
-         << currentFace.getTileColor(0) << " " << currentFace.getTileColor(1) << " " << currentFace.getTileColor(2) << " | "
-         << rightFace.getTileColor(0) << " " << rightFace.getTileColor(1) << " " << rightFace.getTileColor(2) << endl;
-    cout << leftFace.getTileColor(3) << " " << leftFace.getTileColor(4) << " " << leftFace.getTileColor(5) << " | "
-         << currentFace.getTileColor(3) << " " << currentFace.getTileColor(4) << " " << currentFace.getTileColor(5) << " | "
-         << rightFace.getTileColor(3) << " " << rightFace.getTileColor(4) << " " << rightFace.getTileColor(5) << endl;
-    cout << leftFace.getTileColor(6) << " " << leftFace.getTileColor(7) << " " << leftFace.getTileColor(8) << " | "
-         << currentFace.getTileColor(6) << " " << currentFace.getTileColor(7) << " " << currentFace.getTileColor(8) << " | "
-         << rightFace.getTileColor(6) << " " << rightFace.getTileColor(7) << " " << rightFace.getTileColor(8) << endl;
+    cout << allFaces[1].getTileColor(0) << " " << allFaces[1].getTileColor(1) << " " << allFaces[1].getTileColor(2) << " | "
+         << allFaces[0].getTileColor(0) << " " << allFaces[0].getTileColor(1) << " " << allFaces[0].getTileColor(2) << " | "
+         << allFaces[2].getTileColor(0) << " " << allFaces[2].getTileColor(1) << " " << allFaces[2].getTileColor(2) << endl;
+    
+    cout << allFaces[1].getTileColor(3) << " " << allFaces[1].getTileColor(4) << " " << allFaces[1].getTileColor(5) << " | "
+         << allFaces[0].getTileColor(3) << " " << allFaces[0].getTileColor(4) << " " << allFaces[0].getTileColor(5) << " | "
+         << allFaces[2].getTileColor(3) << " " << allFaces[2].getTileColor(4) << " " << allFaces[2].getTileColor(5) << endl;
+    
+    cout << allFaces[1].getTileColor(6) << " " << allFaces[1].getTileColor(7) << " " << allFaces[1].getTileColor(8) << " | "
+         << allFaces[0].getTileColor(6) << " " << allFaces[0].getTileColor(7) << " " << allFaces[0].getTileColor(8) << " | "
+         << allFaces[2].getTileColor(6) << " " << allFaces[2].getTileColor(7) << " " << allFaces[2].getTileColor(8) << endl;
     
     cout << "---------------------" << endl;
     
-    cout << "      | " << belowFace.getTileColor(0) << " " << belowFace.getTileColor(1) << " " << belowFace.getTileColor(2) << " |" << endl;
-    cout << "      | " << belowFace.getTileColor(3) << " " << belowFace.getTileColor(4) << " " << belowFace.getTileColor(5) << " |" << endl;
-    cout << "      | " << belowFace.getTileColor(6) << " " << belowFace.getTileColor(7) << " " << belowFace.getTileColor(8) << " |" << endl;
+    cout << "      | " << allFaces[4].getTileColor(0) << " " << allFaces[4].getTileColor(1) << " " << allFaces[4].getTileColor(2) << " |" << endl;
+    cout << "      | " << allFaces[4].getTileColor(3) << " " << allFaces[4].getTileColor(4) << " " << allFaces[4].getTileColor(5) << " |" << endl;
+    cout << "      | " << allFaces[4].getTileColor(6) << " " << allFaces[4].getTileColor(7) << " " << allFaces[4].getTileColor(8) << " |" << endl;
     
     cout << "      ---------" << endl;
     
-    cout << "      | " << behindFace.getTileColor(0) << " " << behindFace.getTileColor(1) << " " << behindFace.getTileColor(2) << " |" << endl;
-    cout << "      | " << behindFace.getTileColor(3) << " " << behindFace.getTileColor(4) << " " << behindFace.getTileColor(5) << " |" << endl;
-    cout << "      | " << behindFace.getTileColor(6) << " " << behindFace.getTileColor(7) << " " << behindFace.getTileColor(8) << " |" << endl;
+    cout << "      | " << allFaces[5].getTileColor(0) << " " << allFaces[5].getTileColor(1) << " " << allFaces[5].getTileColor(2) << " |" << endl;
+    cout << "      | " << allFaces[5].getTileColor(3) << " " << allFaces[5].getTileColor(4) << " " << allFaces[5].getTileColor(5) << " |" << endl;
+    cout << "      | " << allFaces[5].getTileColor(6) << " " << allFaces[5].getTileColor(7) << " " << allFaces[5].getTileColor(8) << " |" << endl;
     
     cout << "      ---------" << endl;
     

@@ -16,9 +16,9 @@ int main(int argc, const char * argv[]) {
     cube->shuffle();
     
     cube->show();
-    
-    cube->moveRight();
-    
+   
+    cube->moveBehind();
+
     cube->show();
     
     return 0;

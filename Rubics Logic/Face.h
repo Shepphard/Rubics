@@ -24,6 +24,7 @@ private:
 public:
     //Konstruktoren und Destruktoren
     Face(int color = -1);
+    Face(const Face& f);
     ~Face();
     
     
@@ -37,7 +38,7 @@ public:
     void setTileColor(int index, int color);
     
     //Only for testing Purpose atm
-    void shuffle();
-    void printFace();
+//    void shuffle();
+//    void printFace();
 
 };
