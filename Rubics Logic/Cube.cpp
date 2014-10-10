@@ -6,16 +6,26 @@
 //  Copyright (c) 2014 Philippe Kayser. All rights reserved.
 //
 
+//0 - Current | 1 - left | 2 - Right | 3 - Above | 4 - Below | 5 - Behind
+
 #include "Cube.h"
 #include <time.h>
+
 Cube::Cube()
 {
-    //0 - Current | 1 - left | 2 - Right | 3 - Above | 4 - Below | 5 - Behind
+    allFaces = new Face[6];
+}
+
+Cube::Cube(const Cube &c)
+{
     allFaces = new Face[6];
     
     for(int i = 0; i < 6; i++)
     {
-        allFaces[i] = *new Face(-1);
+        for(int j = 0; j < 9; j++)
+        {
+            allFaces[i].setTileColor(j, c.allFaces[i].getTileColor(j));
+        }
     }
 }
 
@@ -28,16 +38,17 @@ const void Cube::moveRight()
 {
     
     //Perform necessary rotations
-    allFaces[5] = *allFaces[5].rotateLeft();
-    allFaces[5] = *allFaces[5].rotateLeft();
+    allFaces[5].rotateLeft();
+    allFaces[5].rotateLeft();
     
-    allFaces[3] = *allFaces[3].rotateRight();
+    allFaces[3].rotateRight();
     
-    allFaces[4] = *allFaces[4].rotateLeft();
+    allFaces[4].rotateLeft();
     
-    allFaces[1] = *allFaces[1].rotateLeft();
-    allFaces[1] = *allFaces[1].rotateLeft();
+    allFaces[1].rotateLeft();
+    allFaces[1].rotateLeft();
     
+    //Do the changes
     Face* temp = new Face(allFaces[5]);
     
     allFaces[5] = allFaces[1];
@@ -48,33 +59,20 @@ const void Cube::moveRight()
 
 const void Cube::moveLeft()
 {
-    
-    //Perform necessary rotations
-    allFaces[5] = *allFaces[5].rotateLeft();
-    allFaces[5] = *allFaces[5].rotateLeft();
-    
-    allFaces[3] = *allFaces[3].rotateLeft();
-    
-    allFaces[4] = *allFaces[4].rotateRight();
-    
-    allFaces[2] = *allFaces[2].rotateLeft();
-    allFaces[2] = *allFaces[2].rotateLeft();
-    
-    Face* temp = new Face(allFaces[5]);
-    
-    allFaces[5] = allFaces[2];
-    allFaces[2] = allFaces[0];
-    allFaces[0] = allFaces[1];
-    allFaces[1] = *temp;
+    //1 Turn Left = 3 Turns Right
+    this->moveRight();
+    this->moveRight();
+    this->moveRight();
 }
 
 const void Cube::moveDown()
 {
     
     //Perform necessary rotations
-    allFaces[1] = *allFaces[1].rotateLeft();
-    allFaces[2] = *allFaces[2].rotateRight();
+    allFaces[1].rotateLeft();
+    allFaces[2].rotateRight();
     
+    //Do the changes
     Face* temp = new Face(allFaces[3]);
     
     allFaces[3] = allFaces[0];
@@ -85,12 +83,14 @@ const void Cube::moveDown()
 
 const void Cube::moveBehind()
 {
+    //Moving behind is going down 2 times
     this->moveDown();
     this->moveDown();
 }
 
 const void Cube::moveUp()
 {
+    //Moving up is going up 2 times
     this->moveDown();
     this->moveDown();
     this->moveDown();

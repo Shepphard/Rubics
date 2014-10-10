@@ -27,6 +27,7 @@ Face::Face(int color)
     }
 }
 
+//Copy Constructor
 Face::Face(const Face& f)
 {
     f_tiles = new Tile[9];
@@ -44,44 +45,47 @@ Face::~Face()
 }
 
 // Rotate whole face by -90°
-Face* Face::rotateRight()
+void Face::rotateRight()
 {
-    Face* temp = new Face(-1);
+    //Make temporary copy of the face
+    Face* temp = new Face(*this);
     
-    temp->setTileColor(0, this->getTileColor(6));
-    temp->setTileColor(1, this->getTileColor(3));
-    temp->setTileColor(2, this->getTileColor(0));
+    //Perform the changes
+    this->setTileColor(0, temp->getTileColor(6));
+    this->setTileColor(1, temp->getTileColor(3));
+    this->setTileColor(2, temp->getTileColor(0));
     
-    temp->setTileColor(3, this->getTileColor(7));
-    temp->setTileColor(4, this->getTileColor(4));
-    temp->setTileColor(5, this->getTileColor(1));
+    this->setTileColor(3, temp->getTileColor(7));
+    this->setTileColor(4, temp->getTileColor(4));
+    this->setTileColor(5, temp->getTileColor(1));
     
-    temp->setTileColor(6, this->getTileColor(8));
-    temp->setTileColor(7, this->getTileColor(5));
-    temp->setTileColor(8, this->getTileColor(2));
+    this->setTileColor(6, temp->getTileColor(8));
+    this->setTileColor(7, temp->getTileColor(5));
+    this->setTileColor(8, temp->getTileColor(2));
     
-    return temp;
-    
+    delete temp;
 }
 
 //Rotate face by 90°
-Face* Face::rotateLeft()
+void Face::rotateLeft()
 {
-    Face* temp = new Face(-1);
+    //Make temporary copy of the Face
+    Face* temp = new Face(*this);
     
-    temp->setTileColor(0, this->getTileColor(2));
-    temp->setTileColor(1, this->getTileColor(5));
-    temp->setTileColor(2, this->getTileColor(8));
+    //Perform the changes
+    this->setTileColor(0, temp->getTileColor(2));
+    this->setTileColor(1, temp->getTileColor(5));
+    this->setTileColor(2, temp->getTileColor(8));
     
-    temp->setTileColor(3, this->getTileColor(1));
-    temp->setTileColor(4, this->getTileColor(4));
-    temp->setTileColor(5, this->getTileColor(7));
+    this->setTileColor(3, temp->getTileColor(1));
+    this->setTileColor(4, temp->getTileColor(4));
+    this->setTileColor(5, temp->getTileColor(7));
     
-    temp->setTileColor(6, this->getTileColor(0));
-    temp->setTileColor(7, this->getTileColor(3));
-    temp->setTileColor(8, this->getTileColor(6));
+    this->setTileColor(6, temp->getTileColor(0));
+    this->setTileColor(7, temp->getTileColor(3));
+    this->setTileColor(8, temp->getTileColor(6));
     
-    return temp;
+    delete temp;
 }
 
 int Face::getTileColor(int index) const
@@ -93,31 +97,3 @@ void Face::setTileColor(int index, int color)
 {
     f_tiles[index].setColor(color);
 }
-
-
-
-
-////////////////////////////////////////////
-//void Face::shuffle()
-//{
-//    int counter = 0;
-//    for(int i = 0; i < 9; i++)
-//    {
-//        f_tiles[i].setColor(counter++);
-//    }
-//}
-//
-//void Face::printFace()
-//{
-//    
-//    for(int i = 0; i < 9; i++)
-//    {
-//        if(i%3 == 0)
-//            cout << endl;
-//        
-//        cout << f_tiles[i].getColor() << " ";
-//        
-//    }
-//    
-//    cout << endl;
-//}

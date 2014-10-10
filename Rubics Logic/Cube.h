@@ -23,6 +23,7 @@ private:
     
 public:
     Cube();
+    Cube(const Cube &c);
     ~Cube();
     
     void shuffle();
