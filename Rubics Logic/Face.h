@@ -24,20 +24,15 @@ private:
 public:
     //Konstruktoren und Destruktoren
     Face(int color = -1);
+    Face(const Face& f);
     ~Face();
     
     
     //Face Rotation
-    //TO DO Reduce to one Argument! Work up Copy Constructor
-    Face* rotateRight();
-    Face* rotateLeft();
+    void rotateRight();
+    void rotateLeft();
     
     //Get Tile and Set Tile Color at specific row and col
     int getTileColor(int index) const;
     void setTileColor(int index, int color);
-    
-    //Only for testing Purpose atm
-    void shuffle();
-    void printFace();
-
 };
