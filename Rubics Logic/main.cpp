@@ -17,7 +17,7 @@ int main(int argc, const char * argv[]) {
     
     cube->show();
    
-    cube->moveBehind();
+    cube->leftColUp();
 
     cube->show();
     
