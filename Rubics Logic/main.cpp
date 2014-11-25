@@ -15,17 +15,11 @@ int main(int argc, const char * argv[]) {
     cube->show();
     
     cube->shuffle();
-    
-<<<<<<< HEAD
-<<<<<<< HEAD
-    
-=======
+
     cube->show();
->>>>>>> FETCH_HEAD
-=======
+
     cube->show();
->>>>>>> FETCH_HEAD
-   
+
     cube->leftColUp();
 
     cube->show();
