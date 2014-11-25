@@ -12,13 +12,14 @@
 int main(int argc, const char * argv[]) {
     
     Cube* cube = new Cube();
+    cube->show();
     
     cube->shuffle();
     
-    cube->show();
     
-    cube->moveRight();
-    
+   
+    cube->leftColUp();
+
     cube->show();
     
     return 0;

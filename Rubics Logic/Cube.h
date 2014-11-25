@@ -21,16 +21,9 @@ class Cube
 private:
     Face* allFaces;
     
-    Face currentFace;
-    
-    Face aboveFace;
-    Face belowFace;
-    Face leftFace;
-    Face rightFace;
-    Face behindFace;
-    
 public:
     Cube();
+    Cube(const Cube &c);
     ~Cube();
     
     void shuffle();
