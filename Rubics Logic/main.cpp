@@ -16,7 +16,11 @@ int main(int argc, const char * argv[]) {
     
     cube->shuffle();
     
+<<<<<<< HEAD
     
+=======
+    cube->show();
+>>>>>>> FETCH_HEAD
    
     cube->leftColUp();
 

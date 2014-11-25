@@ -13,7 +13,10 @@
 
 Cube::Cube()
 {
+<<<<<<< HEAD
     int c = 0;
+=======
+>>>>>>> FETCH_HEAD
     allFaces = new Face[6];
     
     for(int i = 0; i < 6; i++)
@@ -23,6 +26,19 @@ Cube::Cube()
             allFaces[i].setTileColor(j, c);
         }
         c++;
+    }
+}
+
+Cube::Cube(const Cube &c)
+{
+    allFaces = new Face[6];
+    
+    for(int i = 0; i < 6; i++)
+    {
+        for(int j = 0; j < 9; j++)
+        {
+            allFaces[i].setTileColor(j, c.allFaces[i].getTileColor(j));
+        }
     }
 }
 
@@ -287,6 +303,7 @@ void Cube::lowerRowRight()
 
 void Cube::shuffle()
 {
+<<<<<<< HEAD
     int num = 0;
     
     for(int i = 0; i < 200; i++)
@@ -316,6 +333,9 @@ void Cube::shuffle()
         }
     }
     /*
+=======
+    
+>>>>>>> FETCH_HEAD
     //Initialize the randomizer with the time (first cast of time to uInt)
     srand((unsigned int)std::time(0));
     
